@@ -1,11 +1,9 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-// import * as actions  from '../store/actions/home';
 import {Route, Link, NavLink } from 'react-router-dom';
 import Page from '../containers/Page';
 import  { RouteWithSubRoutes } from '../app/router'
-
 
 class Home extends Component{
   state={
@@ -15,7 +13,7 @@ class Home extends Component{
     // this.props.getHomeInfo()
     // 跳转到默认的首页
     const { location: {pathname}, history } = this.props
-    if(pathname === '') {
+    if(pathname === '/') {
       history.push({ pathname: '/green' })
     }
   }
@@ -94,15 +92,5 @@ class Home extends Component{
     )
   }
 }
-
-// const mapStateToProps=(state)=>({
-//   count: state.counter.count,
-//   homeInfo: state.homeInfo,
-// })
-
-// const mapDispatchToProps=(dispatch)=>bindActionCreators({
-//   add: actions.add,
-//   getHomeInfo: actions.getHomeInfo,
-// },dispatch)
 
 export default connect()(Home)

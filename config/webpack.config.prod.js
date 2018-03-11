@@ -25,6 +25,10 @@ const prodConfig={
   resolve:{
     extensions:[".js",".jsx",".css",".less",".scss",".png",".jpg"],
     modules:[path.resolve(rootPath, "src"), "node_modules"],
+    alias: {
+      'style': path.resolve(rootPath, "./src/assets/css"),
+      'containers': path.resolve(rootPath, './src/containers')
+    }
   },
   module:{
     rules:[

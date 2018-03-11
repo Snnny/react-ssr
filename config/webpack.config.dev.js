@@ -42,21 +42,15 @@ const devConfig={
           }
         }
       },{
-         test: /\.css$/,
-         use: ['style-loader', 'css-loader']
-      },{
-        test:/\.scss$/,
+        test:/\.(css|scss)$/,
         exclude:/node_modules/,
         include: path.resolve(rootPath, "src"),
         use: ExtractTextPlugin.extract({
-          fallback:'style-loader',
+          fallback:'style-loader',//style-loader 将css插入到页面的style标签
           use:[{
-            loader: 'style-loader',
-          },{
-            loader: 'css-loader',
+            loader: 'css-loader',//css-loader 是处理css文件中的url(),require()等
             options: {
               sourceMap:true,
-              modules: true,
             }
           },{
             loader:'postcss-loader',

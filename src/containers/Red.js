@@ -3,8 +3,6 @@ import {Route, NavLink } from 'react-router-dom';
 import  { RouteWithSubRoutes } from '../app/router'
 
 const Red = ({ match, routes}) => {
-  console.log(match, routes)
-
   return(
     <div style={{ height: '100%', display: 'flex'}}>
       <div style={{width: '80px', background: '#ccc'}}>
