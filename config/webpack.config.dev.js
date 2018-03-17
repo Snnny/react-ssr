@@ -52,13 +52,18 @@ const devConfig={
             options: {
               sourceMap:true,
             }
-          },{
+          },
+          {
             loader:'postcss-loader',
             options: {
-              plugins:()=>[require("autoprefixer")({browsers:'last 5 versions'})],
+              // plugins:()=>[require("autoprefixer")({browsers:'last 5 versions'})],
               sourceMap:true,
+              config: {
+                path: path.resolve(rootPath, "postcss.config.js")  // 这个得在项目根目录创建此文件
+              }
             }
-          },{
+          },
+          {
             loader:'sass-loader',
             options:{
               sourceMap:true,

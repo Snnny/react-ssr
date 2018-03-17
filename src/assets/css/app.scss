@@ -1,0 +1,33 @@
+@import 'mixin.scss';
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  .app-title {
+    height:　256px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../img/2.jpg');
+    @include blur(5px);
+  }
+  .app-body {
+    flex: 1
+  }
+  .app-footer {
+    height:　116px;
+    border-top: 1px solid #ccc;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .app-footer-btn {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+  }
+}

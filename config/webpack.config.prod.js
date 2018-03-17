@@ -58,8 +58,9 @@ const prodConfig={
           },{
             loader:'postcss-loader',
             options: {
-              plugins:()=>[require('autoprefixer')({browsers:'last 5 versions'})],
-              minimize:true,
+              config: {
+                path: path.resolve(rootPath, "postcss.config.js")  // 这个得在项目根目录创建此文件
+              },
             }
           },{
             loader:'sass-loader',

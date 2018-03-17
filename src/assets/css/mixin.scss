@@ -1,0 +1,45 @@
+// 背景虚化
+@mixin blur($px: 10px){  
+  filter: url('../svg/blur.svg#blur'); /* FireFox, Chrome, Opera */
+            filter: blur($px);
+}
+// flex 居中
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+// 单边 1像素
+@mixin one-border($pos: bottom, $color: #f00) {
+  $dir: 'height';
+  $size: 0;
+  @if $pos == bottom or $pos == top {
+    $dir: 'width';
+  }
+  @if $pos == right { // hack right
+    $size: -32%;
+  }
+  position: relative;
+  &::before {
+    content: '' !important;
+    position: absolute;
+    #{$pos}: $size;
+    left: 0;
+    #{$dir}: 100%;
+    border-#{$pos}: 1px solid $color;
+    @media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2) {
+      @if $pos == bottom or $pos == top {
+        transform: scaleY(0.5)
+      } @else {
+        transform: scaleX(0.5)
+      }
+    };
+    @media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3) {
+      @if $pos == bottom or $pos == top {
+        transform: scaleY(0.33)
+      } @else {
+        transform: scaleX(0.33)
+      }
+    }
+  };
+}

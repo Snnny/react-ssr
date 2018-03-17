@@ -4,6 +4,7 @@ import createHistory from 'history/createBrowserHistory'
 import Loadable from 'react-loadable';
 import app from './app/index.js';
 const initialState =window && window.__INITIAL_STATE__;
+require('./assets/css/global.scss')
 
 let history=createHistory()
 let {configureStore,createApp}=app;

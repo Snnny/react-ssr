@@ -1,0 +1,48 @@
+/*@svg 1px-border {
+  height: 2px;
+  @rect {
+    fill: val(--color, #ccc);
+    width: 100%;
+    height: 50%;
+  }
+}
+
+@svg square {
+    @rect {
+        fill: var(--color, black);
+        width: 100%;
+        height: 100%;
+    }
+}*/
+@import 'mixin.scss';
+.blue {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /*background: #000;*/
+  .blue-title {
+    font-size: 16px;
+    color: blue;
+    height: 100px;
+    width: 100%;
+    background: #0ff;
+    text-align: center;
+  }
+  .border-one {
+    margin-top: 20px;
+    width: 250px;
+    height: 150px;
+    @include one-border(left)
+    /*@extend %borderOne-right;*/
+    @extend %flex-center;
+  }
+  .border-test {
+    margin-top: 10px;
+    width: 200px;
+    height: 150px;
+    border: 1px solid #f00;
+    @extend %flex-center;
+  }
+}

@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {Route, Link, NavLink } from 'react-router-dom';
 import Page from '../containers/Page';
 import  { RouteWithSubRoutes } from '../app/router'
+require('../assets/css/app.scss')
 
 class Home extends Component{
   state={
@@ -25,37 +26,7 @@ class Home extends Component{
     console.log('发送错误':error,info)
   }
   render(){
-    // let {add,count,homeInfo:{name,age}}=this.props;
-    const AppStyle = {
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100vh'
-    }
-    const TitleStyle = {
-      height:　'40px',
-      borderBottom: '1px solid #ccc',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center'
-    }
-    const Body = {
-      flex: 1
-    }
-    const Footer = {
-      height:　'100px',
-      borderTop: '1px solid #ccc',
-      display: 'flex',
-      justifyContent: 'space-around',
-      alignItems: 'center'
-    }
-
-    const FooterBtn = {
-      display: 'flex',
-      flex: '1',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-    }
+  
     const { routes, children, location: {pathname} } = this.props
     let title = ''
     switch(pathname) {
@@ -72,19 +43,19 @@ class Home extends Component{
         title = '首页'   
     }
     return (
-      <div style ={{...AppStyle}}>
-        <div style={{...TitleStyle}}>{title}</div>
-        <div style={{...Body}}>
+      <div className="app" >
+        <div className="app-title">{title}</div>
+        <div className="app-body">
           {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
         </div>
-        <div style={{...Footer}}>
-          <div style={{...FooterBtn}}>
+        <div className="app-footer">
+          <div className="app-footer-btn">
             <NavLink to='/green' activeStyle={{color:'red'}}>Green</NavLink>
           </div>
-           <div style={{...FooterBtn }}>
+           <div className="app-footer-btn">
             <NavLink to='/red' activeStyle={{color:'red'}}>red</NavLink>
           </div>
-          <div style={{...FooterBtn}}>
+          <div className="app-footer-btn">
            <NavLink to='/blue' activeStyle={{color:'red'}}>blue</NavLink>
           </div>
         </div>
