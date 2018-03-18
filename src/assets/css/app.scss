@@ -11,10 +11,12 @@
     justify-content: center;
     align-items: center;
     background: url('../img/2.jpg');
-    @include blur(5px);
+    @include blur(0px);
   }
   .app-body {
-    flex: 1
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   .app-footer {
     height:　116px;

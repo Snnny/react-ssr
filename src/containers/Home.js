@@ -17,7 +17,14 @@ class Home extends Component{
     if(pathname === '/') {
       history.push({ pathname: '/green' })
     }
+    window.addEventListener('scroll', this.loadImage, false);
   }
+
+
+  loadImage () {
+    console.log('..........')
+  }
+
 
   componentDidCatch(error, info) {
     this.setState({ hasError: true });
