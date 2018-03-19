@@ -26,8 +26,8 @@ const prodConfig={
     extensions:[".js",".jsx",".css",".less",".scss",".png",".jpg"],
     modules:[path.resolve(rootPath, "src"), "node_modules"],
     alias: {
-      'style': path.resolve(rootPath, "./src/assets/css"),
-      'containers': path.resolve(rootPath, './src/containers')
+      'assets': path.resolve(rootPath, "src/assets"),
+      'components': path.resolve(rootPath, "src/components"),
     }
   },
   module:{

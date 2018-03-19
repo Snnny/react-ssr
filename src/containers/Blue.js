@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { Link } from 'react-router-dom';
-import style from '../assets/css/blue.scss'
+import style from 'assets/css/blue.scss'
 import Hoc from '../components/Hoc/Hoc'
 import HocWithArg from '../components/Hoc/HocWithArg'
 import HocPassProps from '../components/Hoc/HocPassProps'

@@ -20,6 +20,10 @@ const devConfig={
   resolve:{
     extensions:[".js",".jsx","css","less","scss","png","jpg"],
     modules:[path.resolve(rootPath, "src"), "node_modules"],
+    alias: {
+      'assets': path.resolve(rootPath, "src/assets"),
+      'components': path.resolve(rootPath, "src/components"),
+    }
   },
   devServer:{
     contentBase:'assets',
