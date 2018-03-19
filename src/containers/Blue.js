@@ -5,6 +5,7 @@ import Hoc from '../components/Hoc/Hoc'
 import HocWithArg from '../components/Hoc/HocWithArg'
 import HocPassProps from '../components/Hoc/HocPassProps'
 import InheritanceInversion from '../components/Hoc/InheritanceInversion'
+import LoadList from '../components/LoadList/LoadList'
 
 class Blue extends Component {
   constructor(props) {
@@ -19,14 +20,19 @@ class Blue extends Component {
   static getName =()=> 'blue'
 
   render() {
-    console.log(">>>>>>>>>>>innerText", this.state.innerText)
+    let list = []
+    for(let i=0; i<20; i++ ) {
+      list.push('item'+i)
+    }
     return(
       <div className={style.blue}>
         <p className={style.blueTitle}>蓝色部分</p>
         <Link to="/login"> 返回登陆 </Link>
-        <div className={style.borderOne}>我是一像素边框</div>
+        {/*<div className={style.borderOne}>我是一像素边框</div>*/}
 
-        <div className={style.borderTest}>border-test</div>
+        {/*<div className={style.borderTest}>border-test</div>*/}
+
+        <LoadList list={list} dispatchData={()=>{}}/>
       </div>
     );
   }
@@ -44,4 +50,5 @@ class Blue extends Component {
 // const HocComponent = HocPassProps(Blue)
 // console.log(typeof HocPassProps.getName)// undefined
 
-export default InheritanceInversion(Blue)
+// export default InheritanceInversion(Blue)
+export default Blue
