@@ -3,6 +3,7 @@
 * */
 import React, { Component } from 'react'
 import LazyImg from "../LazyImg/LazyImg";
+import { throttle } from 'assets/js/utils'
 
 class LoadList extends Component {
   constructor(props) {
@@ -26,10 +27,11 @@ class LoadList extends Component {
     this._below = this._rowsInWindow,
     this._max = this._rowsInWindow * this.height;
     let node = document.querySelector('.app-body')
-    node.addEventListener('scroll', this.handleScroll)
+    node.addEventListener('scroll', throttle(this.handleScroll, 250))
   }
 
   handleScroll=()=> {
+    console.log("滚动")
     const { lastScrollTop, distance, data: list } = this.state
     const { height, canScroll } = this.props
     let _scrollTop = this.props.el.scrollTop,

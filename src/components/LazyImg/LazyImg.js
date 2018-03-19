@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import defaultImg from '../../assets/img/default.jpg'
 import PropTypes from 'prop-types'
+import { throttle } from 'assets/js/utils'
 
 class LazyImg extends Component {
   constructor(props) {
@@ -13,18 +14,7 @@ class LazyImg extends Component {
 
   componentDidMount() {
     this.loadImage()
-    this.props.el.addEventListener('scroll', this.handleLoad);
-  }
-
-  handleLoad =()=> {
-    let ticking = false, _this = this;
-    if (!ticking) {
-      window.requestAnimationFrame(function() {
-        _this.loadImage()
-        ticking = false;
-      });
-    }
-    ticking = true;
+    this.props.el.addEventListener('scroll', throttle(this.loadImage, 250));
   }
 
   loadImage =()=> {
