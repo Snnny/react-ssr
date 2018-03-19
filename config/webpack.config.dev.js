@@ -46,11 +46,13 @@ const devConfig={
         exclude:/node_modules/,
         include: path.resolve(rootPath, "src"),
         use: ExtractTextPlugin.extract({
-          fallback:'style-loader',//style-loader 将css插入到页面的style标签
+          fallback:'style-loader',
           use:[{
-            loader: 'css-loader',//css-loader 是处理css文件中的url(),require()等
+            loader: 'css-loader',
             options: {
               sourceMap:true,
+              modules: true,
+              camelCase: true
             }
           },
           {

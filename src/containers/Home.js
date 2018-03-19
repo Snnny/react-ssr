@@ -3,9 +3,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Route, Link, NavLink } from 'react-router-dom';
 import Page from '../containers/Page';
-import  { RouteWithSubRoutes } from '../app/router'
-require('../assets/css/app.scss')
-
+import  { RouteWithSubRoutes } from '../app/router';
+import style from '../assets/css/app.scss'
+console.log(style)
 class Home extends Component{
   state={
     hasError:false,
@@ -50,19 +50,19 @@ class Home extends Component{
         title = '首页'   
     }
     return (
-      <div className="app" >
-        <div className="app-title">{title}</div>
-        <div className="app-body">
+      <div className={style.app} >
+        <div className={style.appTitle}>{title}</div>
+        <div className={`${style.appBody} app-body`}>
           {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
         </div>
-        <div className="app-footer">
-          <div className="app-footer-btn">
+        <div className={style.appFooter}>
+          <div className={style.appFooterBtn}>
             <NavLink to='/green' activeStyle={{color:'red'}}>Green</NavLink>
           </div>
-           <div className="app-footer-btn">
+           <div className={style.appFooterBtn}>
             <NavLink to='/red' activeStyle={{color:'red'}}>red</NavLink>
           </div>
-          <div className="app-footer-btn">
+          <div className={style.appFooterBtn}>
            <NavLink to='/blue' activeStyle={{color:'red'}}>blue</NavLink>
           </div>
         </div>

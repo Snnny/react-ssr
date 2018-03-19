@@ -5,18 +5,7 @@ class RedChildB extends Component{
 
   constructor(props) {
     super(props)
-    this.loadImage = this.loadImage.bind(this)
   }
-
-  componentDidMount() {
-    console.log("子元素", this.red)
-    this.red.addEventListener('scroll', this.loadImage);
-  }
-
-  loadImage () {
-    console.log('..........')
-  }
-
 
   render() {
     const imgList = [

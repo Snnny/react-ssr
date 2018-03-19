@@ -53,6 +53,8 @@ const prodConfig={
           use:[{
             loader: 'css-loader',//css-loader 是处理css文件中的url(),require()等
             options: {
+              modules: true,
+              camelCase: true,
               minimize:true,
             }
           },{
