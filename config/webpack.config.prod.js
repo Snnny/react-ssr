@@ -91,7 +91,7 @@ const prodConfig={
       filename: 'css/style.[hash].css',
       allChunks: true,
     }),
-    new CopyWebpackPlugin([{from:'favicon.ico',to:rootPath+'./dist'}]),
+    new CopyWebpackPlugin([{from:'favicon.ico',to:rootPath+'./dist'},{ from: path.join(__dirname, '../src/lib'), to: path.join(__dirname, '../dist/static') }]),
     new CleanWebpackPlugin(['./dist'],{root: rootPath,}),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV':JSON.stringify(process.env.NODE_ENV)
@@ -100,7 +100,7 @@ const prodConfig={
     new HtmlWebpackPlugin({
       title:'yyy',
       filename:'index.html',
-      template:'./index.ejs',
+      template:'./index-pro.ejs',
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name:['vendors','manifest'],
