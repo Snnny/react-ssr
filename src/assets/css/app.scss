@@ -5,9 +5,9 @@
   flex-direction: column;
   height: 100vh;
   .app-title {
-    height:　256px;
-    border-bottom: 1px solid #ccc;
     display: flex;
+    height: 256px;
+    border-bottom: 1px solid #ccc;
     justify-content: center;
     align-items: center;
     background: url('../img/2.jpg');
@@ -19,7 +19,7 @@
     overflow-x: hidden;
   }
   .app-footer {
-    height:　116px;
+    height:116px;
     border-top: 1px solid #ccc;
     display: flex;
     justify-content: space-around;

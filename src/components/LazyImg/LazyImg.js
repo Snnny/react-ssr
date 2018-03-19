@@ -1,35 +1,40 @@
 import React, { Component } from 'react'
 import defaultImg from '../../assets/img/default.jpg'
+import PropTypes from 'prop-types'
 
 class LazyImg extends Component {
   constructor(props) {
     super(props)
-    this.loadImage = this.loadImage.bind(this)
   }
 
   state = {
-    url: defaultImg,
+    url: this.props.default,
   }
 
   componentDidMount() {
-    let scrollNode = document.querySelector('.app-body')
     this.loadImage()
+    this.props.el.addEventListener('scroll', this.handleLoad);
+  }
+
+  handleLoad =()=> {
     let ticking = false, _this = this;
-    scrollNode.addEventListener('scroll', function(e) {
-      if (!ticking) {
-        window.requestAnimationFrame(function() {
-          _this.loadImage()
-          ticking = false;
-        });
-      }
-      ticking = true;
-    });
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        _this.loadImage()
+        ticking = false;
+      });
+    }
+    ticking = true;
   }
 
   loadImage =()=> {
-    const { url } = this.props.data
+    const { url } = this.props
     const { url: _url } = this.state
-    if(_url!== url &&  url && this._isShow(this.img)) {
+    if(_url === url) { // 移除事件
+      this.props.el.removeEventListener('scroll', this.handleLoad)
+      return;
+    }
+    if(url && this._isShow(this.img)) {
       this.setState({ url })
     }
   }
@@ -44,15 +49,24 @@ class LazyImg extends Component {
           display: 'inline-block',
           width: '150px'
       }
-      const { data } = this.props
-    return <div>
-        <img ref={node => this.img=node}  style={{...style}}  src={this.state.url}/>
-    </div>
+    return <img
+              ref={node => this.img=node}
+              style={{...style}}
+              src={this.state.url}/>
   }
 }
 
 LazyImg.defaultProps={
-    offset: 0
+  offset: 0,
+  el: document.body,
+  default: defaultImg,
 };
+
+LazyImg.propTypes = {
+  offset: PropTypes.number,
+  el: PropTypes.object,
+  url: PropTypes.string.isRequired,
+  default: PropTypes.string
+}
 
 export default LazyImg

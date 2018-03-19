@@ -19,7 +19,7 @@ class RedChildB extends Component{
 
 
   render() {
-     const imgList = [
+    const imgList = [
         {
           url: 'http://img0.imgtn.bdimg.com/it/u=4171693271,1659447971&fm=27&gp=0.jpg',
         },
@@ -48,12 +48,16 @@ class RedChildB extends Component{
           url: 'http://img5.imgtn.bdimg.com/it/u=870736880,1100822295&fm=27&gp=0.jpg'
         }
     ]
-   return(
+    const scrollNode = document.querySelector('.app-body')
+    console.log(typeof scrollNode)
+    return(
       <div ref={node=> this.red=node}>
         <p>红色部分的子节点B</p>
         <ul>
           {
-            imgList.map((_, i)=> <li style={{height: '120px'}} key={i}><LazyImg data={_}/></li>)
+            imgList.map((_, i)=> <li style={{height: '120px'}} key={i}>
+              <LazyImg url={_.url} el={scrollNode}/>
+            </li>)
           }
         </ul>
       </div>)
