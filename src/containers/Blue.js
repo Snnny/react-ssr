@@ -1,15 +1,47 @@
 import React,{Component} from 'react';
 import { Link } from 'react-router-dom';
 import style from '../assets/css/blue.scss'
+import Hoc from '../components/Hoc/Hoc'
+import HocWithArg from '../components/Hoc/HocWithArg'
+import HocPassProps from '../components/Hoc/HocPassProps'
+import InheritanceInversion from '../components/Hoc/InheritanceInversion'
 
-const Blue = ({ match: { params } }) => (
-  <div className={style.blue}>
-     <p className={style.blueTitle}>蓝色部分</p>
-     <Link to="/login"> 返回登陆 </Link>
-     <div className={style.borderOne}>我是一像素边框</div>
+class Blue extends Component {
+  constructor(props) {
+    super(props)
+  }
 
-     <div className={style.borderTest}>border-test</div>
-  </div>
-);
+  componentWillMount() {
+    // 这里没有触发
+    console.log("元组件")
+  }
 
-export default Blue
+  static getName =()=> 'blue'
+
+  render() {
+    console.log(">>>>>>>>>>>innerText", this.state.innerText)
+    return(
+      <div className={style.blue}>
+        <p className={style.blueTitle}>蓝色部分</p>
+        <Link to="/login"> 返回登陆 </Link>
+        <div className={style.borderOne}>我是一像素边框</div>
+
+        <div className={style.borderTest}>border-test</div>
+      </div>
+    );
+  }
+}
+
+
+// export default Hoc(Blue)
+// export default HocWithArg({ title: 'HocPassProps' })(Blue)
+
+/*
+*   测试调用后组件还有没有原来的静态方法
+* */
+
+// console.log(typeof Blue.getName) // function
+// const HocComponent = HocPassProps(Blue)
+// console.log(typeof HocPassProps.getName)// undefined
+
+export default InheritanceInversion(Blue)
