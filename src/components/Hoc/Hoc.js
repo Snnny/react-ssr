@@ -4,7 +4,6 @@
 * */
 import React, { Component } from 'react'
 
-
 export default WrappedComponent => class HOC extends Component {
   render() {
     console.log("HOC", this.props)

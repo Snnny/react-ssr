@@ -6,24 +6,35 @@ import HocWithArg from '../components/Hoc/HocWithArg'
 import HocPassProps from '../components/Hoc/HocPassProps'
 import InheritanceInversion from '../components/Hoc/InheritanceInversion'
 import LoadList from '../components/LoadList/LoadList'
+import { getRequest } from '../services/request'
 
 class Blue extends Component {
   constructor(props) {
     super(props)
   }
 
-  componentWillMount() {
+  state = {
+    list: []
+  }
+
+  componentDidMount() {
     // 这里没有触发
-    console.log("元组件")
+    getRequest({ url: '/list?page=1' })
+      .then(data=> {
+        console.log(data.data)
+        if(data && data.data) {
+          this.setState({
+            list: data.data
+          })
+        }
+      })
+
   }
 
   static getName =()=> 'blue'
 
   render() {
-    let list = []
-    for(let i=0; i<20; i++ ) {
-      list.push('item'+i)
-    }
+   const { list } = this.state
     return(
       <div className={style.blue}>
         <p className={style.blueTitle}>蓝色部分</p>
@@ -31,8 +42,11 @@ class Blue extends Component {
         {/*<div className={style.borderOne}>我是一像素边框</div>*/}
 
         {/*<div className={style.borderTest}>border-test</div>*/}
-
-        <LoadList list={list} dispatchData={()=>{}}/>
+        {
+          list.length
+            ?  <LoadList list={list} dispatchData={()=>{}}/>
+            : null
+        }
       </div>
     );
   }

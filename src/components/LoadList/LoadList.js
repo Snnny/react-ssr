@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import LazyImg from "../LazyImg/LazyImg";
 import { throttle } from 'assets/js/utils'
+import { getRequest } from '../../services/request'
 
 class LoadList extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ class LoadList extends Component {
     canLoadmore: true,
     previewList: [],
     displayCount: 0,
-    data: this.props.list
+    data: this.props.list,
+    noData: false
   }
 
   componentDidMount() {
@@ -94,30 +96,57 @@ class LoadList extends Component {
   }
 
   loadmore(from, to) {
-    const { canLoadmore } = this.state
-    if (!canLoadmore) return;
+    const { canLoadmore, noData } = this.state
+    if (!canLoadmore && !noData) return;
     this.setState({ canLoadmore: false })
     // 在这里请求数据
-    setTimeout(() => {
-      let list = this.state.data
-      for(var i = 20; i < 41; i++) {
-        list.push('item '+ i)
-      }
-      this.setState({
-        data: list
-      }, ()=> {
-        let _from = from, _to = to + this._below;
-        this.resetPreviewList(_from, _to);
-        this.to = this.state.data.length
-        // this.lineBottomHeight = (this.state.list.length - _to) * this.props.height;
-        this.handleScroll();
-        this.setState({
-          canLoadmore: true,
-          lineBottomHeight: (this.state.data.length - _to) * this.props.height
-        })
-        // this.canLoadmore = true;
+    getRequest({ url: '/list' })
+      .then(data=> {
+        if(data && data.data) {
+          if(data.data.length< 20) {
+            this.setState({
+              noData: false
+            })
+          }
+
+          this.setState({
+            data: this.state.data.concat(data.data)
+          }, ()=> {
+            console.log(this.state.data)
+            let _from = from, _to = to + this._below;
+            this.resetPreviewList(_from, _to);
+            this.to = this.state.data.length
+            // this.lineBottomHeight = (this.state.list.length - _to) * this.props.height;
+            this.handleScroll();
+            this.setState({
+              canLoadmore: true,
+              lineBottomHeight: (this.state.data.length - _to) * this.props.height
+            })
+          })
+        }
       })
-    }, 1000)
+
+
+    // setTimeout(() => {
+    //   let list = this.state.data
+    //   for(var i = 20; i < 41; i++) {
+    //     list.push('item '+ i)
+    //   }
+    //   this.setState({
+    //     data: list
+    //   }, ()=> {
+    //     let _from = from, _to = to + this._below;
+    //     this.resetPreviewList(_from, _to);
+    //     this.to = this.state.data.length
+    //     // this.lineBottomHeight = (this.state.list.length - _to) * this.props.height;
+    //     this.handleScroll();
+    //     this.setState({
+    //       canLoadmore: true,
+    //       lineBottomHeight: (this.state.data.length - _to) * this.props.height
+    //     })
+    //     // this.canLoadmore = true;
+    //   })
+    // }, 1000)
   }
 
   render() {

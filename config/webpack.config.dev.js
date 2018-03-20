@@ -29,6 +29,13 @@ const devConfig={
     contentBase:'assets',
     hot:true,
     historyApiFallback:true,
+    proxy: { // 代理到http://localhost:3000
+      '/api/*': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   },
   devtool:'source-map',
   module:{
