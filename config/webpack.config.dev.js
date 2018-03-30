@@ -26,8 +26,10 @@ const devConfig={
     }
   },
   devServer:{
-    contentBase:'assets',
+    // contentBase:'assets',
     hot:true,
+    host: '192.168.1.157',
+    port: '3002',
     historyApiFallback:true,
     proxy: { // 代理到http://localhost:3000
       '/api/*': {

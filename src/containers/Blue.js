@@ -14,14 +14,16 @@ class Blue extends Component {
   }
 
   state = {
-    list: []
+    list: [],
+    page: 1,
+    noData: false,
+    canScroll: true
   }
 
   componentDidMount() {
     // 这里没有触发
     getRequest({ url: '/list?page=1' })
       .then(data=> {
-        console.log(data.data)
         if(data && data.data) {
           this.setState({
             list: data.data
@@ -33,8 +35,33 @@ class Blue extends Component {
 
   static getName =()=> 'blue'
 
+  loadData=()=> {
+    console.log("父组件加载数据", this.state.noData, this.state.page)
+    if(this.state.noData)
+      return
+    getRequest({ url: `/list?page=${this.state.page+1}` })
+      .then(data=> {
+        if(data && data.data) {
+          console.log("请求的数据", data.data)
+          if(data.data.length < 20) {
+            console.log("不用再请求了。。。")
+            this.setState({
+              noData: true,
+              list: data.data,
+              canScroll: false
+            })
+          } else {
+            this.setState({
+              list: data.data,
+              page: ++this.state.page
+            })
+          }
+        }
+      })
+  }
+
   render() {
-   const { list } = this.state
+   const { list, noData, canScroll } = this.state
     return(
       <div className={style.blue}>
         <p className={style.blueTitle}>蓝色部分</p>
@@ -44,7 +71,11 @@ class Blue extends Component {
         {/*<div className={style.borderTest}>border-test</div>*/}
         {
           list.length
-            ?  <LoadList list={list} dispatchData={()=>{}}/>
+            ?  <LoadList
+                canScroll={canScroll}
+                noData={noData}
+                list={list}
+                loadData={this.loadData}/>
             : null
         }
       </div>

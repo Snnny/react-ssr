@@ -9,6 +9,18 @@
   justify-content: center;
   align-items: center;
 }
+
+%clearfix {
+  &:after {
+    　content:"" !important;
+　　　height:0;
+　　　line-height:0;
+　　　display:block;
+　　　visibility:hidden;
+　　　clear:both
+  }
+}
+
 // 单边 1像素
 @mixin one-border($pos: bottom, $color: #f00) {
   $dir: 'height';

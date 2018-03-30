@@ -24,7 +24,9 @@ class LazyImg extends Component {
       this.props.el.removeEventListener('scroll', this.handleLoad)
       return;
     }
+    console.log("loadImage...........",this._isShow(this.img))
     if(url && this._isShow(this.img)) {
+      console.log("设置url", url)
       this.setState({ url })
     }
   }

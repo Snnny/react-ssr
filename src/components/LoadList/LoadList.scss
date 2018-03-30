@@ -1,36 +1,34 @@
+@import "../../assets/css/mixin";
 .vue-list{
-    width: 100%;
-    height: 100%;
+    width: 100vw;
     overflow-y: auto;
-    &::scroll-bar{
-         width: 0;
-     }
-ul {
-    margin: 0;
-    padding: 0;
-    li{
-        text-decoration: none;
-        height: 44px;
-        font-size: 14px;
-        line-height: 3;
-        text-align: left;
-        padding-left: 15px;
-        border-bottom: 1px solid #ddd;
-        box-sizing: border-box;
-        background: #fff;
-        &.line-top,
-        &.line-bottom{
-            border-bottom: 0;
+    ul {
+        &::after {
+            display:block;
+            clear:both;
+            content:""!important;
+            visibility:hidden;
+            height:0
         }
     }
-}
-.load-more-gif{
-    width: 100%;
-    height: 44px;
-    text-align: center;
-    line-height: 44px;
-    background: #fff;
-    border-top: none;
-    color: #48B884;
-}
+    .list-item {
+        display: flex;
+        float: left;
+        width: 50vw;
+        height: 300px;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        &:nth-child(odd) {
+            border-bottom: 1px solid #eee;
+            border-right: 1px solid #eee;
+        }
+        &:nth-child(even) {
+            border-bottom: 1px solid #eee;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
 }

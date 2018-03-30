@@ -17,7 +17,6 @@ axios.interceptors.response.use(data=> {
   }
   return data;
 }, err=> {
-  console.log("...........errr", err)
   if (err.response.status == 504||err.response.status == 404) {
     console.error( '服务器被吃了⊙﹏⊙∥');
   } else if (err.response.status == 403) {
@@ -82,7 +81,6 @@ export const deleteRequest = (url) => {
   });
 }
 export const getRequest = ({ url }) => {
-  console.log("url", `${base}${url}`)
   return axios({
     method: 'get',
     url: `${base}${url}`
