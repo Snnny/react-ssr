@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import { postRequest } from '../services/request'
+import { postRequest } from '../../services/request'
 
 class Login extends Component {
   constructor(props) {
@@ -8,10 +8,15 @@ class Login extends Component {
 
   submit=e=> {
     e.preventDefault()
-    postRequest('/login',{ userName: this.username, password: this.password })
+    postRequest('/Login',Object.assign({source: 'form'},{ userName: this.username.value, password: this.password.value }))
       .then(data=> {
-
-        console.log("data", data)
+        const { success, message } = data.data
+        if(success) {
+          console.log("success...........")
+          this.props.history.goBack()
+        } else {
+          alert(message)
+        }
       })
   }
 

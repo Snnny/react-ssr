@@ -9,7 +9,7 @@ export default WrappedComponent => class HOC extends Component {
     console.log("HOC", this.props)
     const { push } = this.props.history
     // 权限拦截
-    // if(!location.login) {
+    // if(!location.Login) {
     //   push({ pathname: '/green' })
     // }
     return (

@@ -1,7 +1,8 @@
 import React from 'react';
 import Loadable from 'react-loadable';
 import { Redirect }from "react-router-dom";
-import {greenThunk} from '../../store/actions/thunk';
+import {homeThunk} from '../../store/actions/thunk';
+import PersonCenter from "../../pages/PersonalCenter/PersonalCenter";
 
 const Loading=(props)=>{
   return <div>Loading...</div>
@@ -13,8 +14,24 @@ const Loading=(props)=>{
   delay：(单位毫秒) 组件加载过快时loading会出现闪烁
   被Loadable包装的组件有一个preload的静态方法，预加载一些组件
 */
-const LoadableHome = Loadable({
-  loader: () =>import(/* webpackChunkName: 'Home' */'../../containers/Home'),
+const LoadableIndex = Loadable({
+  loader: () =>import(/* webpackChunkName: 'Home' */'../../pages'),
+  loading: Loading,
+});
+const LoadableCategory = Loadable({
+  loader: () =>import(/* webpackChunkName: 'Home' */'../../pages/Category/Category'),
+  loading: Loading,
+});
+const LoadablePinTuan = Loadable({
+  loader: () =>import(/* webpackChunkName: 'Home' */'../../pages/PinTuan/PinTuan'),
+  loading: Loading,
+});
+const LoadableShoppingCar = Loadable({
+  loader: () =>import(/* webpackChunkName: 'Home' */'../../pages/ShoppingCar/ShoppingCar'),
+  loading: Loading,
+});
+const LoadablePerson = Loadable({
+  loader: () =>import(/* webpackChunkName: 'Home' */'../../pages/PersonalCenter/PersonalCenter'),
   loading: Loading,
 });
 const LoadableRed = Loadable({
@@ -30,8 +47,8 @@ const LoadableRedChildB = Loadable({
   loader: () =>import(/* webpackChunkName: 'RedChildTwo' */'../../containers/RedChildTwo'),
   loading: Loading,
 });
-const LoadableGreen = Loadable({
-  loader: () =>import(/* webpackChunkName: 'Green' */'../../containers/Green'),
+const LoadableHome = Loadable({
+  loader: () =>import(/* webpackChunkName: 'Green' */'../../pages/Home/Home'),
   loading: Loading,
 });
 const LoadableBlue = Loadable({
@@ -43,7 +60,7 @@ const LoadableUser = Loadable({
   loading: Loading,
 });
 const LoadableLogin = Loadable({
-  loader: () =>import(/* webpackChunkName: 'Login' */'../../containers/Login'),
+  loader: () =>import(/* webpackChunkName: 'Login' */'../../pages/Login/Login'),
   loading: Loading,
 });
 
@@ -51,7 +68,7 @@ const routesConfig=[
 {
   path: '/',
   exact: true,
-  component: LoadableHome,
+  component: LoadableIndex,
   thunk: ()=>{},
   routes: [
      {
@@ -71,10 +88,26 @@ const routesConfig=[
           }
         ]
       },{
-        path: '/green',
-        component: LoadableGreen,
-        thunk: greenThunk,
-      },{
+        path: '/home',
+        component: LoadableHome,
+        thunk: homeThunk,
+      }, {
+        path: '/category',
+        component: LoadableCategory,
+        thunk: ()=>{},
+      }, {
+        path: '/pintuan',
+        component: LoadablePinTuan,
+        thunk: ()=>{},
+      }, {
+        path: '/shoppingcar',
+        component: LoadableShoppingCar,
+        thunk: ()=>{},
+      }, {
+        path: '/person',
+        component: LoadablePerson,
+        thunk: ()=>{},
+      }, {
         path: '/blue',
         component: LoadableBlue,
         thunk: ()=>{},
@@ -83,7 +116,7 @@ const routesConfig=[
         component: LoadableUser,
         thunk: ()=>{},
       }, {
-        path: '/login',
+        path: '/Login',
         component: LoadableLogin,
         thunk: ()=>{}
       }

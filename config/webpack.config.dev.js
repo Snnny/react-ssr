@@ -50,12 +50,35 @@ const devConfig={
           loader:'babel-loader',
           options:{
             presets: ['env', 'react', 'stage-0'],
-            plugins: ['transform-runtime', 'add-module-exports'],
+            plugins: [
+              'transform-runtime',
+              'add-module-exports',
+              ["import", { libraryName: "antd-mobile", style: "css" }]
+            ],
             cacheDirectory: true,
           }
         }
       },{
-        test:/\.(css|scss)$/,
+        test: /\.css$/,
+        // include: /node_modules\/antd/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            'css-loader',
+            {
+              loader:'postcss-loader',
+              options: {
+                // plugins:()=>[require("autoprefixer")({browsers:'last 5 versions'})],
+                sourceMap:true,
+                config: {
+                  path: path.resolve(rootPath, "postcss.config.js")  // 这个得在项目根目录创建此文件
+                }
+              }
+            },
+          ]
+        })
+      }, {
+        test:/\.scss$/,
         exclude:/node_modules/,
         include: path.resolve(rootPath, "src"),
         use: ExtractTextPlugin.extract({

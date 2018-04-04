@@ -2,6 +2,7 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import Routers from './router/index';
 import Loadable from 'react-loadable';
+// import 'antd-mobile/dist/antd-mobile.css';
 
 const createApp=({store,history,modules})=>{
   console.log(process.env.NODE_ENV==='production',process.env.NODE_ENV)

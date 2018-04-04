@@ -21,15 +21,19 @@ class Blue extends Component {
   }
 
   componentDidMount() {
-    // 这里没有触发
-    getRequest({ url: '/list?page=1' })
+    getRequest({ url: '/users' })
       .then(data=> {
-        if(data && data.data) {
-          this.setState({
-            list: data.data
-          })
-        }
+        console.log("获取个人信息")
       })
+    // 这里没有触发
+    // getRequest({ url: '/list?page=1' })
+    //   .then(data=> {
+    //     if(data && data.data) {
+    //       this.setState({
+    //         list: data.data
+    //       })
+    //     }
+    //   })
 
   }
 

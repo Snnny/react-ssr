@@ -1,4 +1,4 @@
 import {getHomeInfo} from './green';
 
-export const greenThunk=store=>store.dispatch(getHomeInfo())
+export const homeThunk=store=>store.dispatch(getHomeInfo())
 

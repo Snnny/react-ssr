@@ -2,13 +2,17 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Route, Link, NavLink } from 'react-router-dom';
-import Page from '../containers/Page';
 import  { RouteWithSubRoutes } from '../app/router';
 import style from '../assets/css/app.scss'
-console.log(style)
+import FooterNav from './FooterNav';
+
 class Home extends Component{
+  constructor(props) {
+    super(props)
+  }
   state={
     hasError:false,
+
   }
   componentDidMount(){
     // this.props.getHomeInfo()
@@ -17,14 +21,7 @@ class Home extends Component{
     if(pathname === '/') {
       history.replace({ pathname: '/home' })
     }
-    window.addEventListener('scroll', this.loadImage, false);
   }
-
-
-  loadImage () {
-    console.log('..........')
-  }
-
 
   componentDidCatch(error, info) {
     this.setState({ hasError: true });
@@ -32,8 +29,9 @@ class Home extends Component{
     // 在这里可以做异常的上报
     console.log('发送错误':error,info)
   }
+
   render(){
-  
+
     const { routes, children, location: {pathname} } = this.props
     let title = ''
     switch(pathname) {
@@ -47,24 +45,16 @@ class Home extends Component{
         title = '蓝色专区'
         break;
       default:
-        title = '首页'   
+        title = '首页'
     }
     return (
       <div className={style.app} >
-        <div className={style.appTitle}>{title}</div>
+        {/*<div className={style.appTitle}>{title}</div>*/}
         <div className={`${style.appBody} app-body`}>
           {routes.map((route, i) => <RouteWithSubRoutes key={i} {...route} />)}
         </div>
         <div className={style.appFooter}>
-          <div className={style.appFooterBtn}>
-            <NavLink to='/home' activeStyle={{color:'red'}}>首页</NavLink>
-          </div>
-           <div className={style.appFooterBtn}>
-            <NavLink to='/category' activeStyle={{color:'red'}}>类别</NavLink>
-          </div>
-          <div className={style.appFooterBtn}>
-           <NavLink to='/blue' activeStyle={{color:'red'}}>blue</NavLink>
-          </div>
+          <FooterNav />
         </div>
       </div>
     )

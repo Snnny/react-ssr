@@ -11,6 +11,7 @@
     <meta name="x5-orientation" content="landscape">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
+    <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
   </head>
   <body>
     <div id="root"></div>
@@ -30,6 +31,16 @@
       // console.log("Windows DPI:" + winDPI + ";\ruAgent:" + uAgent + ";\rScreen Width:" +
       //   screenWidth + ";\rScreen Height:" + screenHeight + ";\rWindow Width:" + winWidth +
       //   ";\rWindow Height:" + winHeight)
+    }
+  </script>
+  <script>
+    if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+      }, false);
+    }
+    if(!window.Promise) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
     }
   </script>
 </html>
