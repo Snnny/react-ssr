@@ -7,6 +7,11 @@ import style from '../../assets/css/home.scss'
 import Header from './components/Header'
 import AdBanner from './components/Adbanner'
 import Category from './components/Category'
+import News from './components/News'
+import TemplateColumns from './templates/TemplateColumns'
+import TemplateCommon from './templates/TemplateCommon'
+import ListView from './templates/ListView'
+
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -31,6 +36,12 @@ class Home extends Component {
             <AdBanner/>
             {/**** 类目入口 *****/}
             <Category/>
+            {/**** 头条 *****/}
+            <News/>
+            {/**** 左右布局模板的商品展示 *****/}
+            <TemplateColumns/>
+            {/**** 上下布局模板的商品展示 *****/}
+            <TemplateCommon/>
           </div>
       </div>
     )

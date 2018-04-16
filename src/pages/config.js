@@ -6,32 +6,32 @@ export const config_index = {
   nav: [
     {
       title: '首页',
-      icon: require('../assets/img/navbar/icon1.png'),
-      selectedIcon: require('../assets/img/navbar/icon1_hl.png'),
+      icon: 'home',
+      selectedIcon: 'home-active',
       show: true,
       path:'/home'
     },{
       title: '类别',
-      icon: require('../assets/img/navbar/icon5.png'),
-      selectedIcon: require('../assets/img/navbar/icon5_1.png'),
+      icon: 'category',
+      selectedIcon: 'category-active',
       show: true,
       path:'/category'
     },{
       title: '拼团',
-      icon:  require('../assets/img/navbar/icon3.png'),
-      selectedIcon: require('../assets/img/navbar/icon3_1.png'),
+      icon:  "pintuan",
+      selectedIcon: "pintuan-active",
       show: true,
       path:'/pintuan'
     },{
       title: '购物车',
-      icon: require('../assets/img/navbar/icon2.png'),
-      selectedIcon: require('../assets/img/navbar/icon2_1.png'),
+      icon: "shopcar",
+      selectedIcon: "shopcar-active",
       show: true,
       path:'/shoppingcar'
     },{
       title: '个人中心',
-      icon: require('../assets/img/navbar/icon6.png'),
-      selectedIcon: require('../assets/img/navbar/icon6_1.png'),
+      icon: "user",
+      selectedIcon: "user-active",
       show: true,
       path:'/person'
     },

@@ -1,0 +1,26 @@
+.search {
+  display: flex;
+  height: 80px;
+  background: #f00;
+  padding: 0 10px;
+  align-items: center;
+  .search-input {
+    position: relative;
+    flex: 1;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #ffffff;
+    input {
+      position: absolute;
+      width: 90%;
+      height: 100%;
+      left: 30px;
+    }
+  }
+  .search-cancel {
+    width: 80px;
+    text-align: center;
+    color: #fff;
+    padding: 20px 0px;
+  }
+}

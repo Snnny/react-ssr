@@ -3,7 +3,8 @@ import { TabBar } from 'antd-mobile';
 import style from '../assets/css/app.scss'
 import { config_index } from './config'
 import { withRouter } from 'react-router'
-console.log(withRouter)
+import { Icon } from '../components'
+
 class FooterNav extends Component {
   constructor(props) {
     super(props)
@@ -15,7 +16,10 @@ class FooterNav extends Component {
   }
 
   render() {
-    const { history } = this.props
+    const { history, location: {pathname} } = this.props
+    if( pathname.includes('/search')||  pathname.includes('/login') ) { // 搜索页面没有底部导航
+      return null;
+    }
     const { selectedTab } = this.state
     const { nav, commonNav: { color, activeColor, background } } = config_index
     const navbars = nav.filter(_=> _.show === true)
@@ -32,16 +36,9 @@ class FooterNav extends Component {
                 selected={selectedTab===title}
                 title={title}
                 key={title}
-                icon={<div style={{
-                  width: '24px',
-                  height: '24px',
-                  background: `url(${icon}) center center /  28px 28px no-repeat` }}
-                />}
-                selectedIcon={<div style={{
-                  width: '24px',
-                  height: '24px',
-                  background: `url(${ selectedIcon}) center center /  28px 28px no-repeat` }}
-                />}
+                icon={ <Icon type={icon}/> }
+                selectedIcon={<Icon type={selectedIcon}/>}
+
                 onPress={() => {
                   this.setState({
                     selectedTab: title,

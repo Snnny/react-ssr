@@ -4,7 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const portfinder = require('portfinder')
 const rootPath=path.join(__dirname,'../')
+
+
 const devConfig={
   context: path.join(rootPath,'./src'),
   entry:{
@@ -28,8 +31,8 @@ const devConfig={
   devServer:{
     // contentBase:'assets',
     hot:true,
-    host: '192.168.1.157',
-    port: '3002',
+    host: 'localhost',
+    port: '8080',
     historyApiFallback:true,
     proxy: { // 代理到http://localhost:3000
       '/api/*': {
@@ -91,22 +94,22 @@ const devConfig={
               camelCase: true
             }
           },
-          {
-            loader:'postcss-loader',
-            options: {
-              // plugins:()=>[require("autoprefixer")({browsers:'last 5 versions'})],
-              sourceMap:true,
-              config: {
-                path: path.resolve(rootPath, "postcss.config.js")  // 这个得在项目根目录创建此文件
+            {
+              loader:'postcss-loader',
+              options: {
+                // plugins:()=>[require("autoprefixer")({browsers:'last 5 versions'})],
+                sourceMap:true,
+                config: {
+                  path: path.resolve(rootPath, "postcss.config.js")  // 这个得在项目根目录创建此文件
+                }
               }
-            }
-          },
-          {
-            loader:'sass-loader',
-            options:{
-              sourceMap:true,
-            }
-          }]
+            },
+            {
+              loader:'sass-loader',
+              options:{
+                sourceMap:true,
+              }
+            }]
         }),
       },{
         test: /\.(svg|woff2?|ttf|eot|jpe?g|png|gif)(\?.*)?$/i,
@@ -142,4 +145,16 @@ const devConfig={
   ],
 }
 
-module.exports=devConfig
+// 动态更改port
+module.exports = new Promise((resolve, reject) => {
+  portfinder.basePort = process.env.PORT || 8082
+  portfinder.getPort((err, port) => {
+    if (err) {
+      reject(err)
+    } else {
+      process.env.PORT = port
+      devConfig.devServer.port = port
+      resolve(devConfig)
+    }
+  })
+})

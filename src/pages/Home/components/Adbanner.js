@@ -25,7 +25,7 @@ class AdBanner extends Component {
   }
   render() {
     return (
-      <div>
+      <div className={style.adWrapper}>
         <Carousel
           autoplay={true}
           infinite

@@ -26,6 +26,10 @@ const LoadablePinTuan = Loadable({
   loader: () =>import(/* webpackChunkName: 'Home' */'../../pages/PinTuan/PinTuan'),
   loading: Loading,
 });
+const LoadableSearch = Loadable({
+  loader: () =>import(/* webpackChunkName: 'Home' */'../../pages/Search/Search'),
+  loading: Loading,
+});
 const LoadableShoppingCar = Loadable({
   loader: () =>import(/* webpackChunkName: 'Home' */'../../pages/ShoppingCar/ShoppingCar'),
   loading: Loading,
@@ -108,6 +112,10 @@ const routesConfig=[
         component: LoadablePerson,
         thunk: ()=>{},
       }, {
+        path: '/search',
+        component: LoadableSearch,
+        thunk: ()=>{}
+    }, {
         path: '/blue',
         component: LoadableBlue,
         thunk: ()=>{},

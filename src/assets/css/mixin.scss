@@ -22,7 +22,7 @@
 }
 
 // 单边 1像素
-@mixin one-border($pos: bottom, $color: #f00) {
+@mixin one-border($pos: bottom, $color: #ccc) {
   $dir: 'height';
   $size: 0;
   @if $pos == bottom or $pos == top {
